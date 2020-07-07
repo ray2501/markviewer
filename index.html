@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>A very simple Markdown viewer</title>
+    </head>
+    <body>
+      <div id="content">
+      We are using node <script>document.write(process.versions.node)</script>,
+      Chrome <script>document.write(process.versions.chrome)</script>,
+      and Electron <script>document.write(process.versions.electron)</script>.
+      </div>
+
+      <script>
+      require('electron').ipcRenderer.on('update', (event, message) => {
+	  document.getElementById("content").innerHTML = message;
+      });
+      </script>
+    </body>
+  </html>
+
