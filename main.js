@@ -21,10 +21,10 @@ function createWindow() {
                                 { name: 'Markdown', extensions: ['md'] },
                             ]
                         }).then((fileNames) => {
-                            let fileName = fileNames.filePaths[0];
-                            let text = fs.readFileSync(fileName, 'utf8');
-                            let converter = new showdown.Converter();
-                            let html = converter.makeHtml(text);
+                            const fileName = fileNames.filePaths[0];
+                            const text = fs.readFileSync(fileName, 'utf8');
+                            const converter = new showdown.Converter();
+                            const html = converter.makeHtml(text);
                             win.webContents.send('update', html);
                         });
                     }
@@ -42,10 +42,10 @@ function createWindow() {
     electron_1.Menu.setApplicationMenu(menu);
     win.loadFile('index.html');
     // Invoke an external browser to handle link
-    let handleRedirect = (e, url) => {
+    const handleRedirect = (e, url) => {
         if (url != win.webContents.getURL()) {
             e.preventDefault();
-            require('electron').shell.openExternal(url);
+            electron_1.shell.openExternal(url);
         }
     };
     win.webContents.on('will-navigate', handleRedirect);

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, dialog } from 'electron';
+import { app, BrowserWindow, Menu, dialog, shell } from 'electron';
 import * as showdown from 'showdown';
 import * as fs from 'fs';
 
@@ -22,12 +22,12 @@ function createWindow() {
                                 { name: 'Markdown', extensions: ['md'] },
                             ]
                         }).then((fileNames) => {     
-                            let fileName = fileNames.filePaths[0];
-                            let text = fs.readFileSync(fileName, 'utf8');
+                            const fileName = fileNames.filePaths[0];
+                            const text = fs.readFileSync(fileName, 'utf8');
      
-                            let converter = new showdown.Converter();
+                            const converter = new showdown.Converter();
 
-                            let html:string = converter.makeHtml(text);
+                            const html:string = converter.makeHtml(text);
 
                             win.webContents.send('update', html);
                         });
@@ -49,10 +49,10 @@ function createWindow() {
     win.loadFile('index.html');
 
     // Invoke an external browser to handle link
-    let handleRedirect = (e: Event, url: string) => {
+    const handleRedirect = (e: Event, url: string) => {
         if (url != win.webContents.getURL()) {
             e.preventDefault();
-            require('electron').shell.openExternal(url);
+            shell.openExternal(url);
         }
     };
 
