@@ -7,7 +7,7 @@ const fs = require("fs");
 // be closed automatically when the JavaScript object is garbage collected.
 let win = null;
 function createWindow() {
-    win = new electron_1.BrowserWindow({ width: 1024, height: 768 });
+    win = new electron_1.BrowserWindow({ width: 1024, height: 768, webPreferences: { nodeIntegration: true } });
     const menuTemplate = [
         {
             label: 'File',
@@ -20,10 +20,8 @@ function createWindow() {
                             filters: [
                                 { name: 'Markdown', extensions: ['md'] },
                             ]
-                        }, function (fileNames) {
-                            if (fileNames === undefined)
-                                return;
-                            let fileName = fileNames[0];
+                        }).then((fileNames) => {
+                            let fileName = fileNames.filePaths[0];
                             let text = fs.readFileSync(fileName, 'utf8');
                             let converter = new showdown.Converter();
                             let html = converter.makeHtml(text);

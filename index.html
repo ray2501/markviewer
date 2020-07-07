@@ -12,8 +12,9 @@
       </div>
 
       <script>
-      require('electron').ipcRenderer.on('update', (event, message) => {
-	  document.getElementById("content").innerHTML = message;
+      const { ipcRenderer } = require('electron')
+      ipcRenderer.on('update', (event, message) => {
+        document.getElementById("content").innerHTML = message;
       });
       </script>
     </body>

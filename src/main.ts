@@ -7,7 +7,7 @@ import * as fs from 'fs';
 let win: BrowserWindow = null;
 
 function createWindow() {
-    win = new BrowserWindow({ width: 1024, height: 768 });
+    win = new BrowserWindow({ width: 1024, height: 768, webPreferences: { nodeIntegration: true } });
 
     const menuTemplate = [
         {
@@ -21,19 +21,17 @@ function createWindow() {
                             filters: [
                                 { name: 'Markdown', extensions: ['md'] },
                             ]
-                        },
-                            function (fileNames) {
-                                if (fileNames === undefined) return;
+                        }).then((fileNames) => {     
+                            let fileName = fileNames.filePaths[0];
+                            let text = fs.readFileSync(fileName, 'utf8');
+     
+                            let converter = new showdown.Converter();
 
-                                let fileName = fileNames[0];
+                            let html:string = converter.makeHtml(text);
 
-                                let text = fs.readFileSync(fileName, 'utf8');
-                                let converter = new showdown.Converter();
+                            win.webContents.send('update', html);
+                        });
 
-                                let html = converter.makeHtml(text);
-
-                                win.webContents.send('update', html);
-                            });
                     }
                 },
                 {
