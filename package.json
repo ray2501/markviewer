@@ -12,14 +12,14 @@
   "license": "MIT",
   "devDependencies": {
     "@types/showdown": "^1.9.3",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
-    "@typescript-eslint/parser": "^3.6.1",
-    "electron": "^9.1.0",
-    "eslint": "^7.5.0",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "electron": "^9.1.2",
+    "eslint": "^7.6.0",
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@types/node": "^12.12.50",
+    "@types/node": "^12.12.53",
     "showdown": "^1.9.1"
   }
 }
