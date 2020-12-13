@@ -14,12 +14,12 @@
     "@types/showdown": "^1.9.3",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
-    "electron": "^9.3.3",
-    "eslint": "^7.12.1",
+    "electron": "^9.4.0",
+    "eslint": "^7.15.0",
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@types/node": "^12.19.3",
+    "@types/node": "^12.19.9",
     "showdown": "^1.9.1"
   }
 }
